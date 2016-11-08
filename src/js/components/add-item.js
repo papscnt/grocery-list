@@ -10,12 +10,33 @@ class AddItem extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleClickAddItem = this.handleClickAddItem.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
+        this._onChange = this._onChange.bind(this);
         // set initial state
         this.state = {
             value: "",
             hasError: false,
             errorMessage: ""
         };
+    }
+
+    /* pass this._onChange as callback so that when store emits a change event,
+     * this._onChange will be called to update the componenets state before rendering.
+     *
+     * prevents preexisting errors from being dispaled when clicking 'Clear List' or
+     * 'X' (clear) buttons
+     */
+    componentWillMount(){
+      GroceryListStore.addChangeListener( this._onChange );
+    }
+
+    // remove the change listener in the store immediately before the component is unmounted
+    componentWillUnmount(){
+      GroceryListStore.removeChangeListener( this._onChange );
+    }
+
+    // method which is called to update list of completed objects in state
+    _onChange(){
+      this.resetState();
     }
 
     // update componenet value when input value changes
@@ -25,27 +46,37 @@ class AddItem extends React.Component {
         });
     }
 
+    // set state to clear any current error/message and reset value to blank
+    resetState() {
+      this.setState({
+        value: "",
+        hasError: false,
+        errorMessage: ""
+      });
+    }
+
+    setStateError( msg ) {
+      this.setState({
+        hasError: true,
+        errorMessage: msg,
+        value: this.state.value.trim()
+      });
+
+    }
+
     // method to validate component value
     isValid() {
       // check to ensure component value is not blank
       if(!this.state.value.trim()) {
         // set error state to true and define message to display
-        this.setState({
-          hasError: true,
-          errorMessage: "Item description cannot be empty",
-          value: this.state.value.trim()
-        });
+        this.setStateError("Item description cannot be empty");
         return false;
       }
 
       // check to ensure the item is unique
       if(GroceryListStore.findDuplicateItem(this.state.value.trim())) {
         // set error state to true and define message to display
-        this.setState({
-          value: this.state.value.trim(),
-          hasError: true,
-          errorMessage: "Item '" + this.state.value.trim() + "' already exists"
-        });
+        this.setStateError("Item '" + this.state.value.trim() + "' already exists");
         return false;
       }
       // if not returned early, value is valid
@@ -61,11 +92,7 @@ class AddItem extends React.Component {
               isCompleted: false
           });
           // set state to clear any current error/message and reset value to blank
-          this.setState({
-            value: "",
-            hasError: false,
-            errorMessage: ""
-          });
+          this.resetState();
       }
     }
 
