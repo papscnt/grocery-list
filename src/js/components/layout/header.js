@@ -1,5 +1,6 @@
 import React from 'react';
 
+// component which renders the page header
 class Header extends React.Component {
     render() {
         return (

@@ -2,6 +2,7 @@ import React from 'react';
 import GroceryListStore from '../stores/grocerylist-store';
 import AppActions from '../actions/app-actions';
 
+// component which renders the input and button used to add item to list
 class AddItem extends React.Component {
     constructor() {
         super();
@@ -47,7 +48,7 @@ class AddItem extends React.Component {
         });
         return false;
       }
-      // default return of true
+      // if not returned early, value is valid
       return true;
     }
 
