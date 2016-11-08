@@ -20,4 +20,8 @@ class NeededItem extends React.Component {
     }
 }
 
+NeededItem.propTypes = {
+  item: React.PropTypes.object
+};
+
 export default NeededItem;
