@@ -18,7 +18,7 @@ class CompletedList extends React.Component {
     }
 
     /* pass this._onChange as callback so that when store emits a change event,
-     * this._onChange will be called to update the componenets state before rendering
+     * this._onChange will be called to update the componenet's state before rendering
      */
     componentWillMount(){
       GroceryListStore.addChangeListener( this._onChange );
