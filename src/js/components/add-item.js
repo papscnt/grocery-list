@@ -60,9 +60,7 @@ class AddItem extends React.Component {
       }
     }
     handleKeyPress(event) {
-        if (event.key === 'Enter') {
-            this.handleClickAddItem()
-        }
+        event.key === 'Enter' ? this.handleClickAddItem() : false;
     }
     renderAlert() {
       return (
