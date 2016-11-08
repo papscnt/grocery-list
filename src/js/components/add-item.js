@@ -9,32 +9,33 @@ class AddItem extends React.Component {
         this.handleClickAddItem = this.handleClickAddItem.bind(this);
         this.handleKeyPress = this.handleKeyPress.bind(this);
         this.state = {
-            newItemTextValue: "",
+            value: "",
             hasError: false,
             errorMessage: ""
         };
     }
     handleChange(event) {
         this.setState({
-            newItemTextValue: event.target.value
+            value: event.target.value
         });
     }
     isValid() {
-      if(!this.state.newItemTextValue.trim()) {
+      if(!this.state.value.trim()) {
         this.setState({
           // Ensure state error is false and errorMessage is emtpy string
           hasError: true,
-          errorMessage: "Item description cannot be empty"
+          errorMessage: "Item description cannot be empty",
+          value: this.state.value.trim()
         });
         return false;
       }
-      if(GroceryListStore.findDuplicateItem(this.state.newItemTextValue.trim())) {
+      if(GroceryListStore.findDuplicateItem(this.state.value.trim())) {
         this.setState({
           // Ensure state error is false and errorMessage is emtpy string
+          value: this.state.value.trim(),
           hasError: true,
-          errorMessage: "Item '" + this.state.newItemTextValue + "' already exists"
+          errorMessage: "Item '" + this.state.value.trim() + "' already exists"
         });
-        this.refs.newItemTextValue.value = "";
         return false;
       }
 
@@ -44,14 +45,14 @@ class AddItem extends React.Component {
       // Check to ensure item is not emtpy and is unique
       if (this.isValid()) {
           AppActions.addItem({
-              description: this.state.newItemTextValue,
+              description: this.state.value.trim(),
               isCompleted: false
           });
           this.refs.newItemTextValue.value = "";
           // Set state properties
           this.setState({
             // Set input value to empty string
-            newItemTextValue: "",
+            value: "",
             // Ensure state error is false and errorMessage is emtpy string
             hasError: false,
             errorMessage: ""
@@ -69,14 +70,14 @@ class AddItem extends React.Component {
       );
     }
     render() {
-        var alert = this.state.hasError ? this.renderAlert() : null;
+        const alert = this.state.hasError ? this.renderAlert() : null;
         return (
           <div>
             <div className = "input-group">
-              <input onChange = { this.handleChange } onKeyPress = { this.handleKeyPress } ref = "newItemTextValue"
+              <input onChange = { this.handleChange } onKeyPress = { this.handleKeyPress } value = { this.state.value } ref = "newItemTextValue"
                 type = "text" className = "form-control" placeholder = "Item description..." />
               <span className = "input-group-btn">
-                <button onClick = {this.handleClickAddItem} className = "btn btn-warning" type = "button" > Add Item! < /button>
+                <button onClick = {this.handleClickAddItem} className = "btn btn-warning" type = "button" > Add </button>
               </span>
             </div>
             { alert }
