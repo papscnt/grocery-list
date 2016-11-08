@@ -20,4 +20,8 @@ class CompletedItem extends React.Component {
     }
 }
 
+CompletedItem.propTypes = {
+  item: React.PropTypes.object
+};
+
 export default CompletedItem;
