@@ -29,18 +29,18 @@ class CompletedList extends React.Component {
         });
         return (
             <div className="panel panel-success">
-                <div className="panel-heading">Completed Items</div>
-                <table className="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Description</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      {completedItems}
-                    </tbody>
-                </table>
+              <div className="panel-heading">Completed Items</div>
+              <table className="table table-hover">
+                <thead>
+                  <tr>
+                    <th className="col-sm-11">Description</th>
+                    <th className="col-sm-1"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {completedItems}
+                </tbody>
+              </table>
             </div>
         );
     }

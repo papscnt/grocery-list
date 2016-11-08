@@ -29,27 +29,27 @@ class NeededList extends React.Component {
         });
         return (
                 <div className="bs-example" data-example-id="panel-without-body-with-table">
-                    <div className="panel panel-info">
-                        <div className="panel-heading">Needed Items</div>
-                        <div className="panel-body">
-                          <div className="row">
-                            <div className="col-lg-12">
-                              <AddItem />
-                            </div>
-                          </div>
+                  <div className="panel panel-info">
+                    <div className="panel-heading">Needed Items</div>
+                    <div className="panel-body">
+                      <div className="row">
+                        <div className="col-lg-12">
+                          <AddItem />
                         </div>
-                        <table className="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                              {neededItems}
-                            </tbody>
-                        </table>
+                      </div>
                     </div>
+                    <table className="table table-hover">
+                      <thead>
+                        <tr>
+                          <th className="col-sm-1">#</th>
+                          <th className="col-sm-11">Description</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {neededItems}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
         );
     }

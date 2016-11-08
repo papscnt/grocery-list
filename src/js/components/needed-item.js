@@ -14,7 +14,7 @@ class NeededItem extends React.Component {
         return (
             <tr>
               <td><input onChange={this.handleChange} value={this.props.item.description} type="checkbox" /></td>
-                <td>{this.props.item.description}</td>
+              <td>{this.props.item.description}</td>
             </tr>
         );
     }

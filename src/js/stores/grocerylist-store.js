@@ -17,10 +17,7 @@ const _findGroceryItemIndex = ( description ) => {
 }
 
 const _completeItem = ( description ) => {
-    var itemIndex = _groceryList.findIndex(function(item){
-        return item.description.toLowerCase() === description.toLowerCase();
-    });
-    _groceryList[itemIndex].isCompleted = true;
+    _groceryList[_findGroceryItemIndex(description)].isCompleted = true;
 }
 
 const _clearItem = ( description ) => {
@@ -33,11 +30,7 @@ const _clearAllItems = () => {
 
 const _addItem = ( item ) => {
     const groceryItem = _findGroceryItem( item.description );
-    if ( !groceryItem ) {
-        _groceryList.push( item );
-    } else {
-        alert(item.description + ' already exists');
-    }
+    _groceryList.push( item );
 }
 
 const GroceryListStore = Object.assign(EventEmitter.prototype, {
@@ -62,14 +55,11 @@ const GroceryListStore = Object.assign(EventEmitter.prototype, {
       return _findGroceryItem( description );
     },
 
-    //
     dispatcherIndex: register( function( action ){
         switch ( action.actionType ) {
             case AppConstants.ADD_ITEM:
                 if(action.item.description.length) {
                     _addItem( action.item );
-                } else {
-                    return {msg: "Blank"};
                 }
                 break;
             case AppConstants.COMPLETE_ITEM:
@@ -82,7 +72,6 @@ const GroceryListStore = Object.assign(EventEmitter.prototype, {
                 _clearAllItems();
                 break;
         }
-
         GroceryListStore.emitChange();
     })
 
