@@ -1,3 +1,4 @@
+// export object defining constants for the application
 export default {
     ADD_ITEM: "ADD_ITEM",
     COMPLETE_ITEM: "COMPLETE_ITEM",

@@ -5,6 +5,7 @@ import NeededList from './needed-list.js';
 import CompletedList from './completed-list.js';
 import ClearAllItemsButton from './clear-all-items-button';
 
+// root container component for react app
 class App extends React.Component {
     render() {
         return (

@@ -1,11 +1,14 @@
 import React from 'react';
 import AppActions from '../actions/app-actions';
 
+// component to render and handle actions related to items listed in completed section
 class CompletedItem extends React.Component {
     constructor() {
         super();
         this.handleClick = this.handleClick.bind(this);
     }
+    
+    // fire action to clear single item from groceryList array in store based on item description
     handleClick() {
         AppActions.clearItem(this.props.item.description);
     }
@@ -22,6 +25,7 @@ class CompletedItem extends React.Component {
     }
 }
 
+// define propType to ensure item being passed in is an object
 CompletedItem.propTypes = {
   item: React.PropTypes.object
 };
