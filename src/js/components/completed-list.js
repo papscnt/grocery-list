@@ -33,7 +33,7 @@ class CompletedList extends React.Component {
               <table className="table table-hover">
                 <thead>
                   <tr>
-                    <th className="col-sm-11">Description</th>
+                    <th className="col-sm-11" colSpan="2">Description</th>
                     <th className="col-sm-1"></th>
                   </tr>
                 </thead>

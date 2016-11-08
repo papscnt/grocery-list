@@ -2,7 +2,6 @@ import React from 'react';
 import AppActions from '../actions/app-actions';
 
 class CompletedItem extends React.Component {
-    // use super() constructor to get context of 'this'
     constructor() {
         super();
         this.handleClick = this.handleClick.bind(this);
@@ -13,8 +12,11 @@ class CompletedItem extends React.Component {
     render() {
         return (
             <tr>
-                <td><span className="glyphicon glyphicon-ok" aria-hidden="true"></span> {this.props.item.description}</td>
-                <td><button onClick={this.handleClick}><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
+              <td className="col-sm-1">
+                <span className="glyphicon glyphicon-ok" aria-hidden="true"></span>
+              </td>
+              <td className="col-sm-10">{this.props.item.description}</td>
+              <td className="col-sm-1"><button onClick={this.handleClick}><span className="glyphicon glyphicon-remove" aria-hidden="true"></span></button></td>
             </tr>
         );
     }

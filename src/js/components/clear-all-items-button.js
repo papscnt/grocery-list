@@ -11,7 +11,9 @@ class ClearAllItemsButton extends React.Component {
     }
     render() {
         return (
-          <button onClick={ this.handleClick } type="button" className="btn btn-danger"><span className="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Clear List</button>
+          <button onClick={ this.handleClick } type="button" className="btn btn-danger">
+            <span className="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Clear List
+          </button>
         );
     }
 }

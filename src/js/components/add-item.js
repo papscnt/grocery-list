@@ -55,12 +55,11 @@ class AddItem extends React.Component {
     handleClickAddItem() {
       // validate component value
       if (this.isValid()) {
-          // value is valid, so call addItem action
           AppActions.addItem({
               description: this.state.value.trim(),
               isCompleted: false
           });
-          // set state to clear any error/message and reset value to blank
+          // set state to clear any current error/message and reset value to blank
           this.setState({
             value: "",
             hasError: false,
@@ -74,14 +73,12 @@ class AddItem extends React.Component {
         event.key === 'Enter' ? this.handleClickAddItem() : false;
     }
 
-    // method to return error element
     renderAlert() {
       return (
         <p className="text-danger">{ this.state.errorMessage }</p>
       );
     }
 
-    // componenet render method
     render() {
       // check state for error and set alert const based on its condition
       const alert = this.state.hasError ? this.renderAlert() : null;
