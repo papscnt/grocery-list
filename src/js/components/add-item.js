@@ -22,7 +22,7 @@ class AddItem extends React.Component {
     /* pass this._onChange as callback so that when store emits a change event,
      * this._onChange will be called to update the componenet's state before rendering.
      *
-     * prevents preexisting errors from being dispaled when clicking 'Clear List' or
+     * prevents pre-existing errors from being dispaled when clicking 'Clear List' or
      * 'X' (clear) buttons
      */
     componentWillMount(){
